@@ -21,7 +21,18 @@ const About: React.FC = () => {
                     <div className="flex flex-col lg:flex-row items-center gap-12">
                         {/* AI Avatar */}
                         <div className="relative flex-shrink-0">
-                            <AIAvatar size={256} />
+                            <div className="w-64 h-64 md:w-80 md:h-80 relative">
+                                {/* Glow effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary via-blue-500 to-cyan-400 rounded-2xl blur-2xl opacity-40 animate-pulse"></div>
+                                {/* Image container */}
+                                <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-primary/20">
+                                    <img
+                                        src="/images/z7504144096911_323439a9f2595d9879b73d00df0f4604.jpg"
+                                        alt="AI Construction - Trợ lý AI ngành Xây dựng"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
                             <div className="absolute -bottom-3 -right-3 bg-secondary text-navy-950 px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg z-10">
                                 <Sparkles className="w-4 h-4" />
                                 AI-Powered
