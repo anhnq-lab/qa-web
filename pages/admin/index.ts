@@ -4,3 +4,5 @@ export { default as AdminPosts } from './AdminPosts';
 export { default as AdminLeads } from './AdminLeads';
 export { default as AdminSubscribers } from './AdminSubscribers';
 export { default as PostEditor } from './PostEditor';
+export { default as AdminLogin } from './AdminLogin';
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
     LayoutDashboard,
     FileText,
@@ -9,11 +9,15 @@ import {
     BarChart3,
     ArrowLeft,
     Bell,
-    Search
+    Search,
+    LogOut
 } from 'lucide-react';
+import { useAuth } from '../../src/contexts/AuthContext';
 
 const AdminLayout: React.FC = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { user, signOut } = useAuth();
 
     const navItems = [
         { path: '/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
@@ -27,6 +31,11 @@ const AdminLayout: React.FC = () => {
     const isActive = (path: string, exact = false) => {
         if (exact) return location.pathname === path;
         return location.pathname.startsWith(path);
+    };
+
+    const handleSignOut = async () => {
+        await signOut();
+        navigate('/admin/login');
     };
 
     return (
@@ -66,8 +75,8 @@ const AdminLayout: React.FC = () => {
                     </ul>
                 </nav>
 
-                {/* Back to site */}
-                <div className="p-4 border-t border-navy-800">
+                {/* Bottom Actions */}
+                <div className="p-4 border-t border-navy-800 space-y-2">
                     <Link
                         to="/"
                         className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-navy-800 transition-all"
@@ -75,6 +84,13 @@ const AdminLayout: React.FC = () => {
                         <ArrowLeft className="w-5 h-5" />
                         Về trang chủ
                     </Link>
+                    <button
+                        onClick={handleSignOut}
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
+                    >
+                        <LogOut className="w-5 h-5" />
+                        Đăng xuất
+                    </button>
                 </div>
             </aside>
 
@@ -99,11 +115,13 @@ const AdminLayout: React.FC = () => {
                         </button>
                         <div className="flex items-center gap-3">
                             <div className="w-9 h-9 bg-gradient-to-br from-primary to-blue-500 rounded-full flex items-center justify-center">
-                                <span className="text-white font-bold text-sm">A</span>
+                                <span className="text-white font-bold text-sm">
+                                    {user?.email?.charAt(0).toUpperCase() || 'A'}
+                                </span>
                             </div>
                             <div className="hidden md:block">
                                 <p className="text-sm font-medium text-white">Admin</p>
-                                <p className="text-xs text-slate-500">admin@aiconstruction.vn</p>
+                                <p className="text-xs text-slate-500">{user?.email || 'admin@aiconstruction.vn'}</p>
                             </div>
                         </div>
                     </div>
