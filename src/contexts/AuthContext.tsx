@@ -18,10 +18,39 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DEV_ADMIN_EMAIL = 'admin@aiconstruction.vn';
 const DEV_ADMIN_PASSWORD = 'Admin@123456';
 
+// Check if we're in dev mode
+const isDevMode = () => {
+    try {
+        return import.meta.env.DEV || import.meta.env.VITE_DEV_MODE === 'true';
+    } catch {
+        return false;
+    }
+};
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
+    const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
+
+    // Auto login function
+    const performAutoLogin = async () => {
+        if (!isSupabaseConfigured()) return false;
+
+        console.log('🔐 Dev mode: Attempting auto-login...');
+        const { error } = await supabase.auth.signInWithPassword({
+            email: DEV_ADMIN_EMAIL,
+            password: DEV_ADMIN_PASSWORD
+        });
+
+        if (error) {
+            console.warn('⚠️ Auto-login failed:', error.message);
+            return false;
+        }
+
+        console.log('✅ Auto-login successful!');
+        return true;
+    };
 
     useEffect(() => {
         if (!isSupabaseConfigured()) {
@@ -30,20 +59,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
 
         // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-            setUser(session?.user ?? null);
-            setLoading(false);
+        supabase.auth.getSession().then(async ({ data: { session } }) => {
+            if (session) {
+                // Already have a session
+                setSession(session);
+                setUser(session.user);
+                setLoading(false);
+            } else if (isDevMode() && !autoLoginAttempted) {
+                // No session in dev mode - try auto login
+                setAutoLoginAttempted(true);
+                const success = await performAutoLogin();
+                if (!success) {
+                    setLoading(false);
+                }
+                // If success, the onAuthStateChange will update the state
+            } else {
+                setLoading(false);
+            }
         });
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
             setUser(session?.user ?? null);
+            setLoading(false);
         });
 
         return () => subscription.unsubscribe();
-    }, []);
+    }, [autoLoginAttempted]);
 
     const signIn = async (email: string, password: string) => {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -56,17 +99,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(null);
     };
 
-    // Auto login for development
+    // Manual dev auto login (for button click)
     const devAutoLogin = async () => {
-        if (import.meta.env.DEV || import.meta.env.VITE_DEV_MODE === 'true') {
-            const { error } = await signIn(DEV_ADMIN_EMAIL, DEV_ADMIN_PASSWORD);
-            if (error) {
-                console.warn('Dev auto-login failed:', error.message);
-            }
+        if (isDevMode()) {
+            await performAutoLogin();
         }
     };
 
-    // Check if user is admin (has admin role or specific email)
+    // Check if user is admin
     const isAdmin = user?.email === DEV_ADMIN_EMAIL ||
         user?.user_metadata?.role === 'admin' ||
         user?.app_metadata?.role === 'admin';
