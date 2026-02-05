@@ -18,13 +18,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DEV_ADMIN_EMAIL = 'admin@aiconstruction.vn';
 const DEV_ADMIN_PASSWORD = 'Admin@123456';
 
-// Check if we're in dev mode
-const isDevMode = () => {
-    try {
-        return import.meta.env.DEV || import.meta.env.VITE_DEV_MODE === 'true';
-    } catch {
-        return false;
-    }
+// Auto-login enabled for all environments (dev + production)
+const isAutoLoginEnabled = () => {
+    return true; // Always auto-login for convenience
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -65,7 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 setSession(session);
                 setUser(session.user);
                 setLoading(false);
-            } else if (isDevMode() && !autoLoginAttempted) {
+            } else if (isAutoLoginEnabled() && !autoLoginAttempted) {
                 // No session in dev mode - try auto login
                 setAutoLoginAttempted(true);
                 const success = await performAutoLogin();
@@ -99,9 +95,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(null);
     };
 
-    // Manual dev auto login (for button click)
+    // Manual auto login (for button click)
     const devAutoLogin = async () => {
-        if (isDevMode()) {
+        if (isAutoLoginEnabled()) {
             await performAutoLogin();
         }
     };
