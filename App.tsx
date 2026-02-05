@@ -1,7 +1,6 @@
 import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
-import AdminLayout from './components/AdminLayout';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
@@ -11,8 +10,17 @@ import About from './pages/About';
 import Services from './pages/Services';
 import FAQ from './pages/FAQ';
 import NotFound from './pages/NotFound';
-import AdminDashboard from './pages/AdminDashboard';
 import ChatWidget from './components/ChatWidget';
+
+// Admin imports
+import {
+  AdminLayout,
+  AdminDashboard,
+  AdminPosts,
+  AdminLeads,
+  AdminSubscribers,
+  PostEditor
+} from './pages/admin';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -43,6 +51,11 @@ const App: React.FC = () => {
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
+          <Route path="posts" element={<AdminPosts />} />
+          <Route path="posts/new" element={<PostEditor />} />
+          <Route path="posts/:id/edit" element={<PostEditor />} />
+          <Route path="leads" element={<AdminLeads />} />
+          <Route path="subscribers" element={<AdminSubscribers />} />
         </Route>
       </Routes>
       <ChatWidget />
