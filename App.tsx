@@ -9,6 +9,8 @@ import Contact from './pages/Contact';
 import Tools from './pages/Tools';
 import About from './pages/About';
 import Services from './pages/Services';
+import FAQ from './pages/FAQ';
+import NotFound from './pages/NotFound';
 import AdminDashboard from './pages/AdminDashboard';
 import ChatWidget from './components/ChatWidget';
 
@@ -34,6 +36,8 @@ const App: React.FC = () => {
           <Route path="tools" element={<Tools />} />
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
+          <Route path="faq" element={<FAQ />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* Admin Routes */}
