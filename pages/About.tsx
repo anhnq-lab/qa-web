@@ -31,7 +31,7 @@ const About: React.FC = () => {
                         <div className="text-center lg:text-left">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary mb-4">
                                 <Building2 className="w-4 h-4" />
-                                Sales Representative @ CIC
+                                Chuyên gia Chuyển đổi số Xây dựng
                             </div>
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                                 Nguyễn Quốc Anh
@@ -40,8 +40,8 @@ const About: React.FC = () => {
                                 Chuyên gia Chuyển đổi số ngành Xây dựng | Tư vấn BIM & Công nghệ
                             </p>
                             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                                <a href="mailto:anhnq@cic.com" className="flex items-center gap-2 text-slate-400 hover:text-primary transition-colors">
-                                    <Mail className="w-4 h-4" /> anhnq@cic.com
+                                <a href="mailto:contact@bimtech.vn" className="flex items-center gap-2 text-slate-400 hover:text-primary transition-colors">
+                                    <Mail className="w-4 h-4" /> contact@bimtech.vn
                                 </a>
                                 <a href="tel:+84999999999" className="flex items-center gap-2 text-slate-400 hover:text-primary transition-colors">
                                     <Phone className="w-4 h-4" /> 0999 999 999
@@ -90,7 +90,7 @@ const About: React.FC = () => {
                                     Từ một kỹ sư xây dựng, tôi nhận ra rằng công nghệ chính là chìa khóa để nâng cao năng suất, giảm thiểu rủi ro và tạo lợi thế cạnh tranh cho các doanh nghiệp xây dựng Việt Nam.
                                 </p>
                                 <p>
-                                    Hiện tại, tôi đang làm việc tại <strong className="text-white">CIC - Trung tâm Tin học Xây dựng</strong>, nơi tôi có cơ hội tiếp cận những công nghệ tiên tiến nhất và mang chúng đến gần hơn với các đối tác.
+                                    Hiện tại, tôi đang hoạt động trong lĩnh vực <strong className="text-white">tư vấn chuyển đổi số ngành xây dựng</strong>, nơi tôi có cơ hội tiếp cận những công nghệ tiên tiến nhất và mang chúng đến gần hơn với các đối tác.
                                 </p>
                             </div>
                         </div>
@@ -179,7 +179,7 @@ const About: React.FC = () => {
                         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-navy-700"></div>
 
                         {[
-                            { year: '2024 - Nay', role: 'Sales Representative', company: 'CIC - Trung tâm Tin học Xây dựng', highlight: true },
+                            { year: '2024 - Nay', role: 'Tư vấn Chuyển đổi số', company: 'Freelance / Đối tác công nghệ', highlight: true },
                             { year: '2020 - 2024', role: 'BIM Manager', company: 'Công ty XYZ Construction', highlight: false },
                             { year: '2016 - 2020', role: 'BIM Coordinator', company: 'Tập đoàn ABC', highlight: false },
                             { year: '2014 - 2016', role: 'Kỹ sư Xây dựng', company: 'Công ty DEF', highlight: false },

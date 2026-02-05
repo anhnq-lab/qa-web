@@ -30,11 +30,11 @@ const services: Service[] = [
     {
         id: 'software-solutions',
         icon: 'desktop_windows',
-        title: 'Giải pháp phần mềm CIC',
-        description: 'Triển khai các phần mềm quản lý dự án, dự toán, và thiết kế hàng đầu từ CIC.',
+        title: 'Giải pháp phần mềm Chuyển đổi số',
+        description: 'Triển khai các phần mềm quản lý dự án, dự toán, và thiết kế hàng đầu cho ngành xây dựng.',
         features: [
-            'Phần mềm dự toán GXD',
-            'Quản lý dự án CIC PM',
+            'Phần mềm dự toán xây dựng',
+            'Quản lý dự án chuyên nghiệp',
             'Quản lý chất lượng QMS',
             'Hệ thống CDE (Common Data Environment)',
             'Tích hợp API với hệ thống hiện có',
@@ -157,8 +157,8 @@ const Services: React.FC = () => {
                                 <Link
                                     to={`/contact?service=${service.id}`}
                                     className={`w-full py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 transition-colors ${service.popular
-                                            ? 'bg-primary hover:bg-primary-hover text-white'
-                                            : 'bg-navy-950 hover:bg-navy-700 text-white border border-navy-700'
+                                        ? 'bg-primary hover:bg-primary-hover text-white'
+                                        : 'bg-navy-950 hover:bg-navy-700 text-white border border-navy-700'
                                         }`}
                                 >
                                     Tìm hiểu thêm
