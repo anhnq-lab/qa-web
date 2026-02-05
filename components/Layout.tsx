@@ -8,7 +8,7 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-slate-300 bg-navy-900 selection:bg-primary selection:text-navy-950">
-      
+
       {/* Navbar */}
       <nav className="sticky top-0 z-50 w-full bg-navy-900/90 backdrop-blur shadow-sm border-b border-navy-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,14 +24,14 @@ const Layout: React.FC = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/" className="text-slate-300 hover:text-white font-medium transition-colors">Trang chủ</Link>
-              <Link to="/contact" className="text-slate-300 hover:text-white font-medium transition-colors">Dịch vụ</Link>
               <Link to="/blog" className="text-slate-300 hover:text-white font-medium transition-colors">Blog</Link>
-              <Link to="/contact" className="text-slate-300 hover:text-white font-medium transition-colors">Về chúng tôi</Link>
+              <Link to="/tools" className="text-slate-300 hover:text-white font-medium transition-colors">Công cụ</Link>
+              <Link to="/contact" className="text-slate-300 hover:text-white font-medium transition-colors">Liên hệ</Link>
             </div>
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-4">
-               <button 
+              <button
                 onClick={() => navigate('/admin')}
                 className="text-sm font-medium text-slate-400 hover:text-primary transition-colors"
               >
@@ -45,7 +45,7 @@ const Layout: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
-              <button 
+              <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-slate-300 hover:text-white p-2"
               >
@@ -60,8 +60,8 @@ const Layout: React.FC = () => {
           <div className="md:hidden bg-navy-800 border-t border-navy-700">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Trang chủ</Link>
-              <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Dịch vụ</Link>
               <Link to="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
+              <Link to="/tools" className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Công cụ & Biểu mẫu</Link>
               <Link to="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Liên hệ</Link>
               <Link to="/admin" className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-navy-700" onClick={() => setIsMobileMenuOpen(false)}>Admin Dashboard</Link>
             </div>
@@ -78,7 +78,7 @@ const Layout: React.FC = () => {
       <footer className="bg-navy-950 border-t border-navy-700 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            
+
             {/* Brand Info */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-4">

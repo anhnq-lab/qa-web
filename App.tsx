@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
+import Tools from './pages/Tools';
 import AdminDashboard from './pages/AdminDashboard';
 import ChatWidget from './components/ChatWidget';
 
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:id" element={<BlogPost />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="tools" element={<Tools />} />
         </Route>
 
         {/* Admin Routes */}
