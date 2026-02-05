@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bot, Target, Users, Zap, Heart, BookOpen, Wrench, Globe, ArrowRight, Sparkles, Building2, Brain, Share2, Lightbulb } from 'lucide-react';
 import SEO from '../components/SEO';
+import AIAvatar from '../components/AIAvatar';
 
 const About: React.FC = () => {
     return (
@@ -20,16 +21,10 @@ const About: React.FC = () => {
                     <div className="flex flex-col lg:flex-row items-center gap-12">
                         {/* AI Avatar */}
                         <div className="relative flex-shrink-0">
-                            <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-primary via-blue-600 to-primary-hover flex items-center justify-center shadow-2xl shadow-primary/30">
-                                <Bot className="w-32 h-32 text-white" />
-                            </div>
-                            <div className="absolute -bottom-3 -right-3 bg-secondary text-navy-950 px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg">
+                            <AIAvatar size={256} />
+                            <div className="absolute -bottom-3 -right-3 bg-secondary text-navy-950 px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg z-10">
                                 <Sparkles className="w-4 h-4" />
                                 AI-Powered
-                            </div>
-                            <div className="absolute -top-3 -left-3 w-8 h-8 bg-primary rounded-full animate-ping opacity-30"></div>
-                            <div className="absolute -top-3 -left-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                <Brain className="w-4 h-4 text-white" />
                             </div>
                         </div>
 
